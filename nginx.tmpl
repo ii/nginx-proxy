@@ -78,6 +78,7 @@ server {
 {{ range $host, $containers := groupByMulti $ "Env.VIRTUAL_HOST" "," }}
 
 upstream {{ $host }} {
+  proxy_ssl_verify off;
 {{ range $container := $containers }}
 	{{ $addrLen := len $container.Addresses }}
 
